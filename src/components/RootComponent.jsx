@@ -3,6 +3,7 @@ import React                from 'react';
 import HeaderCardComponent  from './HeaderCardComponent';
 import PostStatusComponent  from './PostStatusComponent';
 import StatusesComponent    from './StatusesComponent';
+import ViewPickerComponent  from './ViewPickerComponent';
 
 
 class RootComponent extends React.Component {
@@ -14,7 +15,7 @@ class RootComponent extends React.Component {
 
         this.statusId = 1;
 
-        this.state = {statuses: []};
+        this.state = {activeView: 'MY_STATUSES', statuses: []};
     }
 
     postStatus(status) {
@@ -36,7 +37,7 @@ class RootComponent extends React.Component {
     }
 
     render() {
-        const {statuses} = this.state;
+        const {activeView, statuses} = this.state;
 
         return (
             <div className="container">
@@ -50,6 +51,9 @@ class RootComponent extends React.Component {
                 <br />
 
                 <HeaderCardComponent name="Ben Thiele" />
+
+                <ViewPickerComponent activeView={activeView} />
+
                 <PostStatusComponent postStatus={this.postStatus} />
                 <StatusesComponent statuses={statuses} removeStatus={this.removeStatus} />
             </div>
