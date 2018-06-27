@@ -1,6 +1,7 @@
 import React                from 'react';
 
 import HeaderCardComponent  from './HeaderCardComponent';
+import PostStatusComponent  from './PostStatusComponent';
 
 
 class RootComponent extends React.Component {
@@ -10,6 +11,7 @@ class RootComponent extends React.Component {
                 <h1>Bootbook</h1>
 
                 <HeaderCardComponent name="Ben Thiele" />
+                <PostStatusComponent />
             </div>
         );
     }
