@@ -10,15 +10,27 @@ class RootComponent extends React.Component {
         super();
 
         this.postStatus = this.postStatus.bind(this);
+        this.removeStatus = this.removeStatus.bind(this);
+
+        this.statusId = 1;
 
         this.state = {statuses: []};
     }
 
     postStatus(status) {
         const {statuses} = this.state;
-        const newStatusObj = {id: statuses.length + 1, text: status};
+        const newStatusObj = {id: this.statusId++, text: status};
 
         const newStatuses = statuses.concat(newStatusObj);
+
+        this.setState({statuses: newStatuses});
+    }
+
+    removeStatus(event) {
+        const {statuses} = this.state;
+        const statusToRemove = Number(event.currentTarget.dataset.statusId);
+
+        const newStatuses = statuses.filter(status => status.id !== statusToRemove);
 
         this.setState({statuses: newStatuses});
     }
@@ -32,7 +44,7 @@ class RootComponent extends React.Component {
 
                 <HeaderCardComponent name="Ben Thiele" />
                 <PostStatusComponent postStatus={this.postStatus} />
-                <StatusesComponent statuses={statuses} />
+                <StatusesComponent statuses={statuses} removeStatus={this.removeStatus} />
             </div>
         );
     }
