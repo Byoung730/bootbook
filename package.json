@@ -17,10 +17,13 @@
   "author": "Ben Thiele <brthie1@monsanto.com>",
   "license": "ISC",
   "devDependencies": {
+    "@monsantoit/eslint-config-velmat-inventory": "~2.1.1",
     "babel-cli": "~6.26.0",
     "babel-loader": "~7.1.4",
     "babel-preset-env": "~1.7.0",
     "babel-preset-react": "~6.24.1",
+    "eslint": "~5.0.1",
+    "eslint-plugin-react": "~7.10.0",
     "webpack": "~4.12.2",
     "webpack-cli": "~3.0.8",
     "webpack-serve": "~1.0.4"
