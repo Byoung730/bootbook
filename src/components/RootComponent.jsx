@@ -9,7 +9,7 @@ class RootComponent extends React.Component {
             <div className="container">
                 <h1>Bootbook</h1>
 
-                <HeaderCardComponent />
+                <HeaderCardComponent name="Ben Thiele" />
             </div>
         );
     }
