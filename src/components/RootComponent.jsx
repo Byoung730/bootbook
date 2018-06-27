@@ -40,7 +40,14 @@ class RootComponent extends React.Component {
 
         return (
             <div className="container">
-                <h1>Bootbook</h1>
+
+                <h1>
+                    <span className="label label-primary">
+                        <span className="fa fa-book" aria-hidden="true" />
+                        <span> Bootbook</span>
+                    </span>
+                </h1>
+                <br />
 
                 <HeaderCardComponent name="Ben Thiele" />
                 <PostStatusComponent postStatus={this.postStatus} />
