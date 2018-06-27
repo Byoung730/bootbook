@@ -9,7 +9,18 @@ class RootComponent extends React.Component {
     constructor() {
         super();
 
-        this.state = {statuses: [{text: 'Our first status'}]};
+        this.postStatus = this.postStatus.bind(this);
+
+        this.state = {statuses: []};
+    }
+
+    postStatus(status) {
+        const {statuses} = this.state;
+        const newStatusObj = {id: statuses.length + 1, text: status};
+
+        const newStatuses = statuses.concat(newStatusObj);
+
+        this.setState({statuses: newStatuses});
     }
 
     render() {
@@ -20,7 +31,7 @@ class RootComponent extends React.Component {
                 <h1>Bootbook</h1>
 
                 <HeaderCardComponent name="Ben Thiele" />
-                <PostStatusComponent />
+                <PostStatusComponent postStatus={this.postStatus} />
                 <StatusesComponent statuses={statuses} />
             </div>
         );

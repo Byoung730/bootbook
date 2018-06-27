@@ -1,4 +1,5 @@
-import React from 'react';
+import React        from 'react';
+import PropTypes    from 'prop-types';
 
 
 class PostStatusComponent extends React.Component {
@@ -6,12 +7,23 @@ class PostStatusComponent extends React.Component {
         super();
 
         this.onStatusChange = this.onStatusChange.bind(this);
+        this.onPostClick = this.onPostClick.bind(this);
 
         this.state = {status: ''};
     }
 
     onStatusChange(event) {
         this.setState({status: event.target.value});
+    }
+
+    onPostClick() {
+        const {status} = this.state;
+        const {postStatus} = this.props;
+
+        postStatus(status);
+
+        this.setState({status: ''});
+        document.getElementById('post-status-input').focus();
     }
 
     render() {
@@ -33,7 +45,12 @@ class PostStatusComponent extends React.Component {
                     />
 
                     <span className="input-group-btn">
-                        <button type="button" className="btn btn-default">
+                        <button
+                            type="button"
+                            className="btn btn-default"
+
+                            onClick={this.onPostClick}
+                        >
                             Post
                         </button>
                     </span>
@@ -44,5 +61,9 @@ class PostStatusComponent extends React.Component {
 }
 
 PostStatusComponent.displayName = 'PostStatusComponent';
+
+PostStatusComponent.propTypes = {
+    postStatus: PropTypes.func.isRequired
+};
 
 export default PostStatusComponent;
