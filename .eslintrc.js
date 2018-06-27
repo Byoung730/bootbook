@@ -2,6 +2,10 @@ module.exports = {
     extends:    '@monsantoit/eslint-config-velmat-inventory',
     plugins:    ['react'],
 
+    rules: {
+        "react/no-set-state": "off"
+    },
+
     env: {
         browser:    true, // Browser global variables
         node:       true, // Node.js global variables and Node.js scoping.
