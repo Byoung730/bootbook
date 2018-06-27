@@ -1,4 +1,6 @@
-import React from 'react';
+import React                from 'react';
+
+import HeaderCardComponent  from './HeaderCardComponent';
 
 
 class RootComponent extends React.Component {
@@ -6,6 +8,8 @@ class RootComponent extends React.Component {
         return (
             <div className="container">
                 <h1>Bootbook</h1>
+
+                <HeaderCardComponent />
             </div>
         );
     }
