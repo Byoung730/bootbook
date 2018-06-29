@@ -15,4 +15,13 @@ describe('ReposComponent', () => {
     it('Default view is empty', () => {
         expect(wrapper).toMatchSnapshot();
     });
+
+    it('Displays alert with spinner when repos are fetching', () => {
+        const newReposRecord = new ReposRecord({
+            status: 'FETCHING'
+        });
+        wrapper.setProps({repos: new ReposRecord()});
+
+        expect(wrapper).toMatchSnapshot();
+    });
 });

@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ReposComponent Default view is empty 1`] = `<div />`;
+
+exports[`ReposComponent Displays alert with spinner when repos are fetching 1`] = `<div />`;
