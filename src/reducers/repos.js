@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
 
-const ReposRecord = Immutable.Record({
+export const ReposRecord = Immutable.Record({
     status: null,
     error: null,
     value: null
