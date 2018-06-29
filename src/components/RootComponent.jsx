@@ -1,66 +1,39 @@
-import React                from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import HeaderCardComponent from './HeaderCardComponent';
+import PostStatusContainer from '../containers/PostStatusContainer';
+import StatusesContainer from '../containers/StatusesContainer';
+import ViewPickerContainer from '../containers/ViewPickerContainer';
+import ReposContainer from '../containers/ReposContainer';
 
-import HeaderCardComponent  from './HeaderCardComponent';
-import PostStatusComponent  from './PostStatusComponent';
-import StatusesComponent    from './StatusesComponent';
-import ViewPickerComponent  from './ViewPickerComponent';
+const RootComponent = ({activeView}) => (
+    <div className="container">
+        <h1>
+            <span className="label label-primary">
+                <span className="fa fa-book" aria-hidden="true" />
+                <span> Bootbook</span>
+            </span>
+        </h1>
+        <br />
 
+        <HeaderCardComponent name="Brian is a Champion" />
 
-class RootComponent extends React.Component {
-    constructor() {
-        super();
+        <ViewPickerContainer />
 
-        this.postStatus = this.postStatus.bind(this);
-        this.removeStatus = this.removeStatus.bind(this);
-
-        this.statusId = 1;
-
-        this.state = {activeView: 'MY_STATUSES', statuses: []};
-    }
-
-    postStatus(status) {
-        const {statuses} = this.state;
-        const newStatusObj = {id: this.statusId++, text: status};
-
-        const newStatuses = statuses.concat(newStatusObj);
-
-        this.setState({statuses: newStatuses});
-    }
-
-    removeStatus(event) {
-        const {statuses} = this.state;
-        const statusToRemove = Number(event.currentTarget.dataset.statusId);
-
-        const newStatuses = statuses.filter(status => status.id !== statusToRemove);
-
-        this.setState({statuses: newStatuses});
-    }
-
-    render() {
-        const {activeView, statuses} = this.state;
-
-        return (
-            <div className="container">
-
-                <h1>
-                    <span className="label label-primary">
-                        <span className="fa fa-book" aria-hidden="true" />
-                        <span> Bootbook</span>
-                    </span>
-                </h1>
-                <br />
-
-                <HeaderCardComponent name="Ben Thiele" />
-
-                <ViewPickerComponent activeView={activeView} />
-
-                <PostStatusComponent postStatus={this.postStatus} />
-                <StatusesComponent statuses={statuses} removeStatus={this.removeStatus} />
+        {activeView === 'MY_STATUSES' && (
+            <div>
+                <PostStatusContainer />
+                <StatusesContainer />
             </div>
-        );
-    }
-}
+        )}
+        {activeView === 'MY_REPOS' && <ReposContainer />}
+    </div>
+);
 
 RootComponent.displayName = 'RootComponent';
+
+RootComponent.propTypes = {
+    activeView: PropTypes.string.isRequired
+};
 
 export default RootComponent;

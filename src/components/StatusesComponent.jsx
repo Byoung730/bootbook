@@ -1,40 +1,29 @@
-import React        from 'react';
-import PropTypes    from 'prop-types';
+import React from 'react';
+import PropTypes from 'prop-types';
+import Immutable from 'immutable';
+import SingleStatusContainer from '../containers/SingleStatusContainer';
 
-
-const StatusesComponent = ({statuses, removeStatus}) => (
+const StatusesComponent = ({statuses}) => (
     <div>
-        {statuses && statuses.length > 0
-            ? statuses.map(status => (
-                <div key={status.id} className="list-group-item">
-                    {status.text}
-
-                    <button
-                        type="button"
-                        className="close"
-                        data-status-id={status.id}
-                        aria-label="Delete Status"
-
-                        onClick={removeStatus}
-                    >
-                        <span className="fa fa-close" aria-hidden="true" />
-                    </button>
-                </div>
-            )) : (
-                <div className="well well-sm">
-                    <span>You have not posted any statuses </span>
-                    <span className="fa fa-frown-o" aria-hidden="true" />
-                </div>
-            )
-        }
+        {statuses.size > 0 ? (
+            statuses
+                .toArray()
+                .map(status => (
+                    <SingleStatusContainer key={status.id} status={status} />
+                ))
+        ) : (
+            <div className="well well-sm">
+                <span>You have not posted any statuses </span>
+                <span className="fa fa-frown-o" aria-hidden="true" />
+            </div>
+        )}
     </div>
 );
 
 StatusesComponent.displayName = 'StatusesComponent';
 
 StatusesComponent.propTypes = {
-    statuses:       PropTypes.array,
-    removeStatus:   PropTypes.func.isRequired
+    statuses: PropTypes.instanceOf(Immutable.OrderedMap).isRequired
 };
 
 export default StatusesComponent;
